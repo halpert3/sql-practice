@@ -1,4 +1,137 @@
 """
+SQL Basics: Raise to the Power - 7th kyu
+
+Given the following table 'decimals':
+
+** decimals table schema **
+
+id
+number1
+number2
+Return a table with one column (result) which is the output of number1 raised to the power of number2.
+"""
+
+SELECT POWER(number1, number2) AS result
+FROM decimals
+
+# or 
+
+SELECT
+  number1 ^ number2 AS Result
+FROM
+  decimals
+
+
+
+"""
+
+SQL Basics: Simple HAVING- 6th
+
+For this challenge you need to create a simple HAVING statement, you want to count how many people have the same age and return 
+the groups with 10 or more people who have that age.
+
+people table schema
+
+id
+name
+age
+
+return table schema
+
+age
+total_people
+"""
+SELECT 
+  age,
+  COUNT(id) total_people
+FROM 
+  people
+GROUP BY
+  age
+HAVING 
+  COUNT(id) > 9; 
+  # even though I rename COUNT(id) AS total_people above, touble_people > 9 doesn't work. Need COUNT(id) > 9 
+
+
+
+
+
+
+"""
+SQL Basics: Truncating - 7th kyu
+
+Given the following table 'decimals':
+
+** decimals table schema **
+
+id
+number1
+number2
+Return a table with one column (towardzero) where the values are the result of number1 + number2 truncated towards zero.
+"""
+
+
+SELECT TRUNC(number1 + number2, 1) AS towardzero 
+FROM decimals
+
+
+"""
+SQL Basics: Up and Down - 7th kyu
+
+Given a table of random numbers as follows:
+
+** numbers table schema **
+
+id
+number1
+number2
+
+Your job is to return table with similar structure and headings, where if the sum of a column is odd, the column shows the 
+minimum value for that column, and when the sum is even, it shows the max value. You must use a case statement.
+
+** output table schema **
+
+number1
+number2
+"""
+SELECT 
+CASE 
+  WHEN SUM(number1)%2 = 0 THEN MAX(number1) ELSE MIN(number1)
+  END AS number1,
+CASE 
+  WHEN SUM(number2)%2 = 0 THEN MAX(number1) ELSE MIN(number2)
+  END AS number2
+FROM numbers
+
+
+
+
+
+
+"""Given the following table 'decimals':
+
+** decimals table schema **
+
+id
+number1
+number2
+
+Return a table with two columns (cuberoot, logarithm) where the values in cuberoot are the cube root of those provided in 
+number1 and the values in logarithm are changed to the natural logarithm of those in number2.
+"""
+
+
+SELECT 
+  cbrt(number1) as cuberoot,
+  ln(number2) as logarithm
+FROM decimals
+
+
+
+
+
+
+"""
 Given a demographics table in the following format:
 
 ** demographics table schema **
@@ -33,7 +166,7 @@ id
 name
 age
 
-select table schema
+SELECT table schema
 age [group by]
 people_count (people count)
 """
@@ -53,7 +186,7 @@ people table schema
 id
 name
 age
-select table schema
+ table schema
 age (distinct)
 """
 
@@ -127,7 +260,7 @@ SELECT * FROM ussales;
 # -- id
 # -- name
 # -- age
-# -- select table schema
+# --  table schema
 # -- age_sum (sum of ages)
 
 
